@@ -11,10 +11,12 @@ import { HomeComponent } from './body/home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './body/home/login/login.component';
 import { RegisterComponent } from './body/home/register/register.component';
+import { Routes, RouterModule } from '@angular/router';
 
-
-
-
+const routes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { RegisterComponent } from './body/home/register/register.component';
     RegisterComponent
   ],
   imports: [
+    [RouterModule.forRoot(routes)],
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -32,6 +35,7 @@ import { RegisterComponent } from './body/home/register/register.component';
     MatInputModule,
     MatIconModule
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
