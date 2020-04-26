@@ -1,0 +1,24 @@
+.side-form {
+    margin-left: 1100px;
+    transform: translateY(10%);
+    margin-right: 20px;
+}
+
+div input {
+    word-wrap: 50%;
+}
+
+.bg {
+    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+#page-wrap {
+    width: 600px;
+    background: #ffffff;
+    height: 400px;
+    margin-left: 200px;
+}
