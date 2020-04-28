@@ -6,6 +6,18 @@
         <div *ngIf="status == 2" class="alert alert-danger" role="alert">
             Email already registered, Please Login
         </div>
+        <div *ngIf="status == 3" class="alert alert-danger" role="alert">
+            Password needs atleast 8 characters
+        </div>
+        <div *ngIf="status == 4" class="alert alert-danger" role="alert">
+            Password cannot be blank
+        </div>
+        <div *ngIf="status == 5" class="alert alert-danger" role="alert">
+            Invalid Email Format
+        </div>
+        <div *ngIf="status == 6" class="alert alert-danger" role="alert">
+            Name cannot be blank
+        </div>
         <strong>Register</strong>
     </h5>
 
@@ -14,18 +26,18 @@
         <!-- Form -->
         <form class="text-center" style="color: #757575;" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
             <div class="md-form">
-                <input type="text" id="materialLoginFormEmail" class="form-control" name="name" ngModel>
+                <input required type="text" id="materialLoginFormEmail" class="form-control" name="name" ngModel>
                 <label for="materialLoginFormEmail">Name</label>
             </div>
             <!-- Email -->
             <div class="md-form">
-                <input type="email" id="materialLoginFormEmail" class="form-control" name="emailid" ngModel>
+                <input required type="email" id="materialLoginFormEmail" class="form-control" name="emailid" ngModel>
                 <label for="materialLoginFormEmail">E-mail</label>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-                <input type="password" id="materialLoginFormPassword" class="form-control" name="passwd" ngModel>
+                <input required type="password" id="materialLoginFormPassword" class="form-control" name="passwd" ngModel>
                 <label for="materialLoginFormPassword">Password</label>
             </div>
 

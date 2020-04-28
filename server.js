@@ -30,19 +30,56 @@ app.post('/api/signup', function(req, res) {
         password: req.body.password
     };
 
-    let UserRef = db.collection('Users').doc(req.body.email);
-    let getDoc = UserRef.get().then(doc => {
-        if (!doc.exists) {
-            let setDoc = UserRef.set(data);
-            messageStatus = 1;
-            res.status(200).json({ 'status': messageStatus });
-
+    function ValidateEmail(email) {
+        var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+        if (reg.test(email)) {
+            return true;
         } else {
-            console.log('Document data:', doc.data());
-            messageStatus = 2;
+            messageStatus = 5;
             res.status(200).json({ 'status': messageStatus });
         }
-    })
+    }
+
+    function ValidateName(name) {
+        if (name.length == 0) {
+            messageStatus = 6;
+            res.status(200).json({ 'status': messageStatus });
+        } else {
+            return true;
+        }
+    }
+
+    EmVal = ValidateEmail(req.body.email);
+    NmVal = ValidateName(req.body.name);
+    let UserRef = db.collection('Users').doc(req.body.email);
+    if (EmVal && NmVal) {
+        if (req.body.password != "") {
+            if (req.body.password.length < 7) {
+                messageStatus = 3;
+                res.status(200).json({ 'status': messageStatus });
+            } else {
+                if (messageStatus != 4) {
+                    let getDoc = UserRef.get().then(doc => {
+                        if (!doc.exists) {
+                            let setDoc = UserRef.set(data);
+                            messageStatus = 1;
+                            res.status(200).json({ 'status': messageStatus });
+
+                        } else {
+                            console.log('Document data:', doc.data());
+                            messageStatus = 2;
+                            res.status(200).json({ 'status': messageStatus });
+
+                        }
+                    });
+                }
+            }
+        } else {
+            messageStatus = 4;
+            res.status(200).json({ 'status': messageStatus });
+        }
+    }
+
 });
 
 app.listen(8081);
