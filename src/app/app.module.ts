@@ -12,7 +12,18 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './body/home/login/login.component';
 import { RegisterComponent } from './body/home/register/register.component';
 import { Routes, RouterModule } from '@angular/router';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { FormsModule } from '@angular/forms';
+const firebaseConfig = {
+  apiKey: 'AIzaSyCNrJ0JeC_G-hDjg9T3Rg4Rhbz2s_A4VCQ',
+  authDomain: 'neon-3ac65.firebaseapp.com',
+  databaseURL: 'https://neon-3ac65.firebaseio.com',
+  projectId: 'neon-3ac65',
+  storageBucket: 'neon-3ac65.appspot.com',
+  messagingSenderId: '805343233818',
+  appId: '1:805343233818:web:91bdee4550e94aa3718ea3'
+};
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent }
@@ -24,7 +35,7 @@ const routes: Routes = [
     HomeComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
@@ -33,7 +44,10 @@ const routes: Routes = [
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [],

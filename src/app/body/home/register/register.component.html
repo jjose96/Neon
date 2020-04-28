@@ -8,20 +8,20 @@
     <div class="card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="#!">
+        <form class="text-center" style="color: #757575;" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
             <div class="md-form">
-                <input type="text" id="materialLoginFormEmail" class="form-control">
+                <input type="text" id="materialLoginFormEmail" class="form-control" name="name" ngModel>
                 <label for="materialLoginFormEmail">Name</label>
             </div>
             <!-- Email -->
             <div class="md-form">
-                <input type="email" id="materialLoginFormEmail" class="form-control">
+                <input type="email" id="materialLoginFormEmail" class="form-control" name="emailid" ngModel>
                 <label for="materialLoginFormEmail">E-mail</label>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-                <input type="password" id="materialLoginFormPassword" class="form-control">
+                <input type="password" id="materialLoginFormPassword" class="form-control" name="passwd" ngModel>
                 <label for="materialLoginFormPassword">Password</label>
             </div>
 
@@ -41,9 +41,9 @@
 
             <!-- Register -->
             <p>Already a member?
-                <a routerLink="../">Login</a>
+                <a routerLink="/ ">Login</a>
             </p>
-            <div style="padding-top:15px"></div>
+            <div style="padding-top:15px "></div>
 
 
         </form>
