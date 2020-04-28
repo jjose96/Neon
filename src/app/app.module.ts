@@ -15,6 +15,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCNrJ0JeC_G-hDjg9T3Rg4Rhbz2s_A4VCQ',
   authDomain: 'neon-3ac65.firebaseapp.com',
@@ -47,7 +49,8 @@ const routes: Routes = [
     MatIconModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -8,18 +9,17 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private http: HttpClient) {}
   succ = 0;
+  UserInfo = '';
+  status: number;
   ngOnInit(): void {
   }
-  OnSubmit(data){
-    console.log(data.name, data.emailid, data.passwd);
-    return new Promise<any>((resolve, reject) => {
-      this.firestore
-          .collection('Users')
-          .add(data)
-          .then(res => { this.succ = 1 ; }, err => reject(err));
-  });
-  }
 
+  OnSubmit(data){
+    this.http.post<any>('http://localhost:8081/api/signup', { name: data.name, email: data.emailid,
+     password: data.passwd }).subscribe(result => {
+       this.status = result.status;
+  });
+}
 }
