@@ -1,12 +1,13 @@
 <div class="card" style="width: 20rem; margin-right: 25px; margin-top: 30px;">
-
     <h5 class="card-header info-color white-text text-center py-4">
+        <div *ngIf="succ" class="alert alert-success" role="alert">
+            User Registered Successfully
+        </div>
         <strong>Register</strong>
     </h5>
 
     <!--Card content-->
     <div class="card-body px-lg-5 pt-0">
-
         <!-- Form -->
         <form class="text-center" style="color: #757575;" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
             <div class="md-form">

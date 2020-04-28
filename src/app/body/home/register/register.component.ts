@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RegisterComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore) {}
+  succ = 0;
   ngOnInit(): void {
   }
   OnSubmit(data){
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
       this.firestore
           .collection('Users')
           .add(data)
-          .then(res => {}, err => reject(err));
+          .then(res => { this.succ = 1 ; }, err => reject(err));
   });
   }
 
