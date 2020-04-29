@@ -12,7 +12,6 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpClient) {}
   succ = 0;
   UserInfo = '';
-  port = process.env.PORT ;
   status: number;
   ngOnInit(): void {
   }
