@@ -5,7 +5,7 @@ const app = express();
 app.use(cors());
 const body_parser = require('body-parser');
 var admin = require("firebase-admin");
-var serviceAccount = require("neon-3ac65-d2152f95a92b.json");
+var serviceAccount = require("./neon-3ac65-d2152f95a92b.json");
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://neon-3ac65.firebaseio.com"
