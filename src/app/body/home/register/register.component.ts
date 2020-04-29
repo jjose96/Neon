@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   }
 
   OnSubmit(data){
-    this.http.post<any>('http://app-neon.herokuapp.com/api/signup', { name: data.name, email: data.emailid,
+    this.http.post<any>('https://app-neon.herokuapp.com/api/signup', { name: data.name, email: data.emailid,
      password: data.passwd }).subscribe(result => {
        this.status = result.status;
   });
