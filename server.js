@@ -3,6 +3,8 @@ const path = require('path')
 var cors = require('cors')
 const app = express();
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(session({ secret: "Shh, its a secret!" }));
 app.use(cors());
 const body_parser = require('body-parser');
@@ -92,7 +94,7 @@ app.post('/api/login', function(req, res) {
         .then(doc => {
             if (doc.exists) {
                 if (password == doc.data().password) {
-                    console.log("success")
+                    console.log("success");
                     req.session.username = email;
                     console.log(req.session.username);
                     res.status(200).json({ 'status': 1 });
@@ -103,10 +105,11 @@ app.post('/api/login', function(req, res) {
         })
 });
 app.get("/api/dashboard", function(req, res) {
-    if (req.session.username != 'undefined') {
-        res.status(200).json({ 'status': 1 });
-    } else {
+    console.log(req.session.username);
+    if (req.session.username === undefined) {
         res.status(200).json({ 'status': 0 });
+    } else {
+        res.status(200).json({ 'status': 1 });
     }
 })
 app.listen(process.env.PORT || 8081);

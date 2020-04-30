@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(data){
-    this.http.post<any>('http://localhost:8081/api/login', { email: data.emailid,
+    this.http.post<any>('https://app-neon.herokuapp.com/api/login', { email: data.emailid,
      password: data.passwd }).subscribe(result => {
        this.status = result.status;
        if (this.status === 1){
