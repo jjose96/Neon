@@ -16,6 +16,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './body/user/sidebar/sidebar.component';
+import { UserComponent } from './body/user/user.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCNrJ0JeC_G-hDjg9T3Rg4Rhbz2s_A4VCQ',
@@ -27,8 +29,11 @@ const firebaseConfig = {
   appId: '1:805343233818:web:91bdee4550e94aa3718ea3'
 };
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: '', component: HomeComponent, children: [
+    { path: '', component: LoginComponent },
+    { path: 'register', component: RegisterComponent }
+  ]},
+  { path: 'dashboard', component: UserComponent }
 ];
 @NgModule({
   declarations: [
@@ -38,6 +43,8 @@ const routes: Routes = [
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    SidebarComponent,
+    UserComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],

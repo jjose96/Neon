@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path')
 var cors = require('cors')
 const app = express();
+var session = require('express-session');
+app.use(session({ secret: "Shh, its a secret!" }));
 app.use(cors());
 const body_parser = require('body-parser');
 var admin = require("firebase-admin");
@@ -82,4 +84,22 @@ app.post('/api/signup', function(req, res) {
 
 });
 
-app.listen(process.env.PORT || 8080);
+app.post('/api/login', function(req, res) {
+    email = req.body.email;
+    password = req.body.password;
+    let UserRef = db.collection('Users').doc(email);
+    let getDoc = UserRef.get()
+        .then(doc => {
+            if (doc.exists) {
+                if (password == doc.data().password) {
+                    console.log("success")
+                    res.status(200).json({ 'status': 1 });
+                } else {
+                    console.log('Document data:', doc.data());
+                    res.status(200).json({ 'status': 0 });
+                }
+            }
+        })
+});
+
+app.listen(process.env.PORT || 8081);

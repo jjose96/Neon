@@ -1,6 +1,9 @@
 <div class="card" style="width: 20rem; margin-right: 25px; margin-top: 30px;">
 
     <h5 class="card-header info-color white-text text-center py-4">
+        <div *ngIf="status == 0" class="alert alert-danger" role="alert">
+            Wrong Email or Password
+        </div>
         <strong>Sign in</strong>
     </h5>
 
@@ -8,17 +11,17 @@
     <div class="card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="#!">
+        <form class="text-center" style="color: #757575;" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
 
             <!-- Email -->
             <div class="md-form">
-                <input type="email" id="materialLoginFormEmail" class="form-control">
+                <input type="email" id="materialLoginFormEmail" class="form-control" name="emailid" ngModel>
                 <label for="materialLoginFormEmail">E-mail</label>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-                <input type="password" id="materialLoginFormPassword" class="form-control">
+                <input type="password" id="materialLoginFormPassword" class="form-control" name="passwd" ngModel>
                 <label for="materialLoginFormPassword">Password</label>
             </div>
 
