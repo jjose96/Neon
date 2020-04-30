@@ -22,7 +22,7 @@ app.use(body_parser.urlencoded({
 app.use(express.static(__dirname + '/dist/Neon'));
 var db = admin.firestore();
 
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
 
     res.sendFile(path.join(__dirname + '/dist/Neon/index.html'));
 });
@@ -104,7 +104,7 @@ app.post('/api/login', function(req, res) {
             }
         })
 });
-app.get("/api/dashboard", function(req, res) {
+app.post("/api/dashboard", function(req, res) {
     console.log(req.session.username);
     if (req.session.username === undefined) {
         res.status(200).json({ 'status': 0 });
