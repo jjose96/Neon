@@ -8,7 +8,7 @@ import {HttpClient } from '@angular/common/http';
 export class UserComponent implements OnInit {
 
   constructor(private http: HttpClient) {
-    this.http.post<any>('https://app-neon.herokuapp.com/api/dashboard').subscribe(result => {
+    this.http.post<any>('https://app-neon.herokuapp.com/api/dashboard', {test: '123'}).subscribe(result => {
        this.status = result.status;
        console.log(this.status);
        if (this.status === 0){
