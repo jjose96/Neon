@@ -20,7 +20,7 @@ app.use(body_parser.urlencoded({
 app.use(express.static(__dirname + '/dist/Neon'));
 var db = admin.firestore();
 
-app.get('/*', function(req, res) {
+app.get('/', function(req, res) {
 
     res.sendFile(path.join(__dirname + '/dist/Neon/index.html'));
 });
@@ -93,13 +93,20 @@ app.post('/api/login', function(req, res) {
             if (doc.exists) {
                 if (password == doc.data().password) {
                     console.log("success")
+                    req.session.username = email;
+                    console.log(req.session.username);
                     res.status(200).json({ 'status': 1 });
                 } else {
-                    console.log('Document data:', doc.data());
                     res.status(200).json({ 'status': 0 });
                 }
             }
         })
 });
-
+app.get("/api/dashboard", function(req, res) {
+    if (req.session.username != 'undefined') {
+        res.status(200).json({ 'status': 1 });
+    } else {
+        res.status(200).json({ 'status': 0 });
+    }
+})
 app.listen(process.env.PORT || 8081);
