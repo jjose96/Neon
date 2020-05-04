@@ -114,13 +114,15 @@ app.post("/api/dashboard", function(req, res) {
 })
 
 app.post("/api/create", function(req, res) {
+    let data = {
+        title: req.body.title,
+        notes: req.body.notes
+    };
     if (req.session.username === undefined) {
         res.status(200).json({ 'status': 0 });
     } else {
         let NotesRef = db.collection('Notes').doc(req.session.username);
         let setDoc = NotesRef.set(data);
-        messageStatus = 1;
-        res.status(200).json({ 'status': messageStatus });
         res.status(200).json({ 'status': 1 });
     }
 });

@@ -13,8 +13,7 @@ status;
   ngOnInit(): void {
   }
   OnSubmit(data){
-    this.http.post<any>('https://app-neon.herokuapp.com/api/create', { name: data.title, email: data.notes,
-     password: data.passwd }).subscribe(result => {
+    this.http.post<any>('https://app-neon.herokuapp.com/api/create', { title: data.title, notes: data.notes }).subscribe(result => {
        this.status = result.status;
   });
 }
