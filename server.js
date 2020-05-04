@@ -119,9 +119,7 @@ app.post("/api/create", function(req, res) {
         res.status(200).json({ 'status': 0 });
     } else {
         let NotesRef = db.collection('Notes').doc(req.session.username);
-        let key = NotesRef.key();
         let data = {
-            key: key,
             title: req.body.title,
             notes: req.body.notes
         };
@@ -129,4 +127,4 @@ app.post("/api/create", function(req, res) {
         res.status(200).json({ 'status': 1 });
     }
 });
-app.listen(process.env.PORT || 8082);
+app.listen(process.env.PORT || 8080);
