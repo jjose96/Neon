@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './body/user/sidebar/sidebar.component';
 import { UserComponent } from './body/user/user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { NotesComponent } from './body/user/notes/notes.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCNrJ0JeC_G-hDjg9T3Rg4Rhbz2s_A4VCQ',
@@ -33,7 +35,10 @@ const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent }
   ]},
-  { path: 'dashboard', component: UserComponent }
+  { path: 'dashboard', component: UserComponent },
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
+
 ];
 @NgModule({
   declarations: [
@@ -45,6 +50,8 @@ const routes: Routes = [
     RegisterComponent,
     SidebarComponent,
     UserComponent,
+    NotFoundComponent,
+    NotesComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
