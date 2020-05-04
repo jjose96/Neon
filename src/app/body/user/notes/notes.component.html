@@ -15,7 +15,7 @@
             <!--Header-->
 
 
-            <form #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
+            <form method="POST" ngForm (ngSubmit)="OnSubmit(userlogin.value)">
                 <div class="card-body mx-4">
                     <div class="md-form">
                         <i class="fas fa-tag prefix grey-text"></i>
