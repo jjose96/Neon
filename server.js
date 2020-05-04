@@ -127,4 +127,12 @@ app.post("/api/create", function(req, res) {
         res.status(200).json({ 'status': 1 });
     }
 });
+app.post("/api/notes", function(req, res) {
+    let notesRef = db.collection('Notes').doc(req.session.username);
+    let getDoc = cityRef.get()
+        .then(doc => {
+            console.log('Document data:', doc.data());
+            res.status(200).json({ 'note': doc.data() });
+        });
+});
 app.listen(process.env.PORT || 8080);
