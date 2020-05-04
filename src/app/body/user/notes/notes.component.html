@@ -9,6 +9,12 @@
 
                 <div class="row d-flex justify-content-center">
                     <h3 class="white-text mb-0 py-5 font-weight-bold">Create Notes</h3>
+                    <div *ngIf="status == 1" class="alert alert-success" role="alert">
+                        Notes Added
+                    </div>
+                    <div *ngIf="status == 0" class="alert alert-danger" role="alert">
+                        Something gone wrong
+                    </div>
                 </div>
 
             </div>
