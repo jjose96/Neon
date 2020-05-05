@@ -10,6 +10,7 @@ export class ViewComponent implements OnInit {
 
 title;
 notes;
+status;
   constructor(private http: HttpClient) {
     this.http.post<any>('https://app-neon.herokuapp.com/api/notes', {}).subscribe(result => {
        this.title = result.title;
@@ -20,6 +21,8 @@ notes;
   ngOnInit(): void {
   }
   DeleteCard(){
-    this.http.post<any>('https://app-neon.herokuapp.com/api/delete', {}).subscribe(result => {});
+    this.http.post<any>('https://app-neon.herokuapp.com/api/delete', {}).subscribe(result => {
+      this.status = result.status;
+    });
 }
 }

@@ -17,5 +17,9 @@ user: any;
 
   ngOnInit(): void {
   }
-
+Logout(){
+  this.http.post<any>('https://app-neon.herokuapp.com/api/logout', {}).subscribe(result => {
+  });
+  location.replace('/');
+}
 }

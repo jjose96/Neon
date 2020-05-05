@@ -155,7 +155,7 @@ app.post("/api/notes", function(req, res) {
             }
         });
 });
-app.post('/api/delete', function(req, res) {
+app.post("/api/delete", function(req, res) {
     let cityRef = db.collection('Notes').doc(req.session.username);
 
     // Remove the 'capital' field from the document
@@ -164,5 +164,8 @@ app.post('/api/delete', function(req, res) {
         notes: notes.delete()
     });
     res.status(200).json({ 'status': 1 })
+});
+app.post("/api/logout", function(req, res) {
+    req.session.destroy();
 });
 app.listen(process.env.PORT || 8081);
