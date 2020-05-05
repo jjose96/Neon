@@ -36,10 +36,10 @@ const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent }
   ]},
-  { path: 'dashboard', component: UserComponent,
-  children: [
-    { path: 'dashboard', component: NotesComponent },
-  {path: 'dashboard/view', component: ViewComponent} ]},
+  { path: 'dashboard', component: UserComponent, children: [
+     { path: 'dashboard', component: NotesComponent, outlet: 'user' },
+     { path: 'dashboard/view', component: ViewComponent }
+  ]},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
 
