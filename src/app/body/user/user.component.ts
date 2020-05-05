@@ -11,9 +11,9 @@ export class UserComponent implements OnInit {
     this.http.post<any>('https://app-neon.herokuapp.com/api/dashboard', {test: '123'}).subscribe(result => {
        this.status = result.status;
        this.user = result.user;
-      /* if (this.status === 0){
+       if (this.status === 0){
            location.replace('/');
-       }*/
+       }
   });
   }
 status: number;
