@@ -106,12 +106,20 @@ app.post('/api/login', function(req, res) {
 });
 app.post("/api/dashboard", function(req, res) {
     console.log(req.session.username);
+
     if (req.session.username === undefined) {
         res.status(200).json({ 'status': 0 });
     } else {
-        res.status(200).json({ 'status': 1 });
+        let UserRef = db.collection('Users').doc(req.session.username);
+        let getDoc = UserRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    req.session.name = doc.data().name;
+                }
+                res.status(200).json({ 'status': 1, 'User': req.session.name });
+            });
     }
-})
+});
 
 app.post("/api/create", function(req, res) {
 
@@ -123,13 +131,21 @@ app.post("/api/create", function(req, res) {
             title: req.body.title,
             notes: req.body.notes
         };
-        let setDoc = NotesRef.set(data);
-        res.status(200).json({ 'status': 1 });
+        let getDoc = NotesRef.get()
+            .then(doc => {
+                if (doc.exists) {
+                    let setDoc = NotesRef.update(data);
+                    res.status(200).json({ 'status': 1 });
+                } else {
+                    let setDoc = NotesRef.set(data);
+                    res.status(200).json({ 'status': 1 });
+                }
+            });
     }
 });
 app.post("/api/notes", function(req, res) {
 
-    let notesRef = db.collection('Notes').doc('sdsidhsd@djkow.com');
+    let notesRef = db.collection('Notes').doc(req.session.username);
     let getDoc = notesRef.get()
         .then(doc => {
             if (doc.exists) {

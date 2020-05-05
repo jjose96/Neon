@@ -1,7 +1,7 @@
-<div *ngIf="status==1">
+<div *ngIf="status==0">
     <app-sidebar></app-sidebar>
-    <router-outlet name='user'></router-outlet>
+    <router-outlet></router-outlet>
 </div>
-<div *ngIf="status==0" style="text-align: center; margin-top:250px">
+<div *ngIf="status==1" style="text-align: center; margin-top:250px">
     <h1> Redirecting to Login page..............</h1>
 </div>
