@@ -1,6 +1,8 @@
 <div *ngIf="status==1">
-    <app-sidebar></app-sidebar>
-    <router-outlet></router-outlet>
+    <div class="bg">
+        <app-sidebar></app-sidebar>
+        <router-outlet></router-outlet>
+    </div>
 </div>
 <div *ngIf="status==0" style="text-align: center; margin-top:250px">
     <h1> Redirecting to Login page..............</h1>
