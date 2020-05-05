@@ -37,8 +37,8 @@ const routes: Routes = [
     { path: 'register', component: RegisterComponent }
   ]},
   { path: 'dashboard', component: UserComponent, children: [
-     { path: 'dashboard', component: NotesComponent, outlet: 'user' },
-     { path: 'dashboard/view', component: ViewComponent }
+     { path: '', component: NotesComponent },
+     { path: '/view', component: ViewComponent }
   ]},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
