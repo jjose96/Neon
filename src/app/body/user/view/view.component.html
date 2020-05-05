@@ -1,10 +1,28 @@
+<!-- Card -->
 <div class="wrap">
-    <a class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{title}}</a>
+    <div class="card">
 
-    <div class="dropdown-menu">
-        <a class="dropdown-item">{{notes}}</a>
+        <!-- Card image -->
+        <div class="view overlay">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" alt="Card image cap">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">{{title}}</h4>
+            <!-- Text -->
+            <p class="card-text">{{notes}}</p>
+            <!-- Button -->
+            <a href="#" class="btn btn-primary">DELETE</a>
+
+        </div>
 
     </div>
-</div>
+    <!-- Card -->
 
-<!-- Basic dropdown -->
+</div>
