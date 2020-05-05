@@ -21,7 +21,10 @@ app.use(body_parser.urlencoded({
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/Neon'));
 var db = admin.firestore();
-
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store')
+    next()
+})
 app.get('/*', function(req, res) {
 
     res.sendFile(path.join(__dirname + '/dist/Neon/index.html'));
@@ -162,6 +165,7 @@ app.post("/api/delete", function(req, res) {
 });
 app.post("/api/logout", function(req, res) {
     req.session.destroy();
+    cookies.set('connect.sid', { maxAge: 0 });
     res.status(200).json({})
 });
 app.listen(process.env.PORT || 8081);

@@ -24,5 +24,6 @@ status;
     this.http.post<any>('https://app-neon.herokuapp.com/api/delete', {}).subscribe(result => {
       this.status = result.status;
     });
+    location.reload();
 }
 }
