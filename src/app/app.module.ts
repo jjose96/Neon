@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import { SidebarComponent } from './body/user/sidebar/sidebar.component';
 import { UserComponent } from './body/user/user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NotesComponent } from './body/user/notes/notes.component';
+import { ViewComponent } from './body/user/view/view.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCNrJ0JeC_G-hDjg9T3Rg4Rhbz2s_A4VCQ',
@@ -35,7 +36,10 @@ const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'register', component: RegisterComponent }
   ]},
-  { path: 'dashboard', component: UserComponent },
+  { path: 'dashboard', component: UserComponent,
+  children: [
+    { path: 'dashboard', component: NotesComponent },
+  {path: 'dashboard/view', component: ViewComponent} ]},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
 
@@ -52,6 +56,7 @@ const routes: Routes = [
     UserComponent,
     NotFoundComponent,
     NotesComponent,
+    ViewComponent,
   ],
   imports: [
     [RouterModule.forRoot(routes)],
