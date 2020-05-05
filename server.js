@@ -157,15 +157,11 @@ app.post("/api/notes", function(req, res) {
 });
 app.post("/api/delete", function(req, res) {
     let cityRef = db.collection('Notes').doc(req.session.username);
-
-    // Remove the 'capital' field from the document
-    let removeCapital = cityRef.update({
-        title: title.delete(),
-        notes: notes.delete()
-    });
-    res.status(200).json({ 'status': 1 })
+    let removeCapital = cityRef.delete();
+    res.status(200).json({})
 });
 app.post("/api/logout", function(req, res) {
     req.session.destroy();
+    res.status(200).json({})
 });
 app.listen(process.env.PORT || 8081);
