@@ -165,7 +165,7 @@ app.post("/api/delete", function(req, res) {
 });
 app.post("/api/logout", function(req, res) {
     req.session.destroy();
-    cookies.set('connect.sid', { maxAge: 0 });
+    res.clearCookie("connect.sid");
     res.status(200).json({})
 });
 app.listen(process.env.PORT || 8081);
