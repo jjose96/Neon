@@ -27,11 +27,11 @@ error;
         });
         }
         else{
-          this.error = 1;
+          this.status = 2;
         }
   }
   else{
-    this.error = 2;
+    this.status = 3;
   }
 }
 
