@@ -163,5 +163,6 @@ app.post('/api/delete', function(req, res) {
         title: title.delete(),
         notes: notes.delete()
     });
+    res.status(200).json({ 'status': 1 })
 });
 app.listen(process.env.PORT || 8081);
