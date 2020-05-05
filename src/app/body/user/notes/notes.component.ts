@@ -10,6 +10,7 @@ export class NotesComponent implements OnInit {
 status;
 title;
 notes;
+error;
   constructor(private http: HttpClient) {
     this.http.post<any>('https://app-neon.herokuapp.com/api/notes', {}).subscribe(result => {
        this.title = result.title;
@@ -19,8 +20,20 @@ notes;
   ngOnInit(): void {
   }
   OnSubmit(data){
-    this.http.post<any>('https://app-neon.herokuapp.com/api/create', { title: data.title, notes: data.notes }).subscribe(result => {
-      this.status = result.status;
-  });
+    if (data.title.length > 0){
+      if (data.notes.length > 0 ){
+        this.http.post<any>('https://app-neon.herokuapp.com/api/create', { title: data.title, notes: data.notes }).subscribe(result => {
+          this.status = result.status;
+        });
+        }
+        else{
+          this.error = 1;
+        }
+  }
+  else{
+    this.error = 2;
+  }
 }
+
 }
+

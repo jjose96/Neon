@@ -19,5 +19,7 @@ notes;
 
   ngOnInit(): void {
   }
-
+  DeleteCard(){
+    this.http.post<any>('https://app-neon.herokuapp.com/api/delete', {}).subscribe(result => {});
+}
 }
