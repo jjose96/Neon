@@ -128,11 +128,15 @@ app.post("/api/create", function(req, res) {
     }
 });
 app.post("/api/notes", function(req, res) {
-    let notesRef = db.collection('Notes').doc(req.session.username);
-    let getDoc = cityRef.get()
+
+    let notesRef = db.collection('Notes').doc('sdsidhsd@djkow.com');
+    let getDoc = notesRef.get()
         .then(doc => {
-            console.log('Document data:', doc.data());
-            res.status(200).json({ 'note': doc.data() });
+            if (doc.exists) {
+                title = doc.data().title;
+                notes = doc.data().notes;
+                res.status(200).json({ 'title': title, 'note': notes });
+            }
         });
 });
 app.listen(process.env.PORT || 8080);

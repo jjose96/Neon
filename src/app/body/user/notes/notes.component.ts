@@ -7,18 +7,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-data;
+status;
   constructor(private http: HttpClient) {
-    this.http.post<any>('https://app-neon.herokuapp.com/api/notes', {test: '123'}).subscribe(result => {
-       this.data = result.note;
+    this.http.post<any>('https://app-neon.herokuapp.com/api/notes', {}).subscribe(result => {
+       this.title = result.title;
+       this.notes = result.notes;
    });
   }
-   status;
+   title;
+   notes;
   ngOnInit(): void {
   }
   OnSubmit(data){
     this.http.post<any>('https://app-neon.herokuapp.com/api/create', { title: data.title, notes: data.notes }).subscribe(result => {
-       this.status = result.status;
+      this.status = result.status;
   });
 }
 }
